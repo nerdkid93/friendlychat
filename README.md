@@ -1,7 +1,8 @@
-# Firebase Codelab: FriendlyChat
+# [FriendlyChat](https://friendly-chat-lab-95207.firebaseapp.com)
 
-This is the source code for the Firebase FriendlyChat codelab. It includes start and end versions of the
-code for Web, Android, Objective-C, Swift and Cloud Functions. To get started open the codelab instructions:
+## Running Through Firebase CodeLabs
+
+This is my runthrough of some of the Google CodeLabs available. This is the list of the Firebase labs I plan on completing:
 
  - ~~[Firebase Web Codelab](https://codelabs.developers.google.com/codelabs/firebase-web/)~~
  - [Firebase SDK for Cloud Functions Codelab](https://codelabs.developers.google.com/codelabs/firebase-cloud-functions/)
