@@ -44,6 +44,7 @@ FriendlyChat.prototype.loadMessages = function() {
 FriendlyChat.prototype.saveMessage = function(e) {
   e.preventDefault();
   if (this.messageInput.value && this.checkSignedInWithMessage()) {
+    if (this.checkMessageText(this.messageInput.value)) return;
     const currentUser = this.auth.currentUser;
     this.messagesRef.push({
       name: currentUser.displayName,
@@ -139,6 +140,16 @@ FriendlyChat.prototype.requestNotificationsPermissions = function() {
   firebase.messaging().requestPermission()
     .then(_ => this.saveMessagingDeviceToken())
     .catch(e => console.error('Unable to get permission to notify.', e));
+};
+
+FriendlyChat.prototype.checkMessageText = function(text) {
+  const len = list.length;
+  for (let i = 0; i < len; i++) {
+    if ((text || '').toLowerCase().includes((list[i] || '').toLowerCase())) {
+      this.messageInput.value = 'No Cursing in this Chatroom!';
+      return true;
+    }
+  }
 };
 
 FriendlyChat.resetMaterialTextfield = element => {
