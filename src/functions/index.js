@@ -1,8 +1,18 @@
-// Note: You will edit this file in the follow up codelab about the Cloud Functions for Firebase.
+const admin = require('firebase-admin');
+const functions = require('firebase-functions');
+const photoUrl = 'images/firebase-logo.png';
+admin.initializeApp(functions.config().firebase);
 
-// TODO(DEVELOPER): Import the Cloud Functions for Firebase and the Firebase Admin modules here.
+exports.addWelcomeMessages = functions.auth.user().onCreate(event => {
+  console.log('A new user signed in for the first time.');
 
-// TODO(DEVELOPER): Write the addWelcomeMessages Function here.
+  const fullName = event.data.displayName || 'Anonymous';
+  const message = { name:'System Bot', photoUrl, text:fullname+' signed in for the first time! Welcome!' };
+
+  return admin.database().ref('messages').push(message)
+    .then(_ => console.log('Message successfully written to chatroom'))
+    .catch(_ => console.warn('Message was not successful'));
+});
 
 // TODO(DEVELOPER): Write the blurOffensiveImages Function here.
 
